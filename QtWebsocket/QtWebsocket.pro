@@ -18,7 +18,6 @@ SOURCES += \
     QWsSocket.cpp \
     QWsHandshake.cpp \
     QWsFrame.cpp \
-    QTlsServer.cpp \
     functions.cpp
 
 HEADERS += \
@@ -26,6 +25,5 @@ HEADERS += \
     QWsSocket.h \
     QWsHandshake.h \
     QWsFrame.h \
-    QTlsServer.h \
     functions.h \
     WsEnums.h

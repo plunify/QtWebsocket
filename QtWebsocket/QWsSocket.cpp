@@ -156,38 +156,6 @@ void QWsSocket::connectToHost(const QString& hostName, quint16 port, OpenMode mo
 		}
 	}
 
-	if (_secured)
-	{
-		// replace tcpSocket by sslSocket
-		tcpSocket->deleteLater();
-		QSslSocket* sslSocket = new QSslSocket;
-		tcpSocket = sslSocket;
-		initTcpSocket();
-
-		QObject::connect(sslSocket, SIGNAL(sslErrors(const QList<QSslError>&)), this, SIGNAL(sslErrors(const QList<QSslError>&)), Qt::UniqueConnection);
-
-		QFile file("client-key.pem");
-		if (!file.open(QIODevice::ReadOnly))
-		{
-			std::cout << "cant load client key" << std::endl;
-			return;
-		}
-		QSslKey key(&file, QSsl::Rsa, QSsl::Pem, QSsl::PrivateKey, QByteArray("qtwebsocket-client-key"));
-		file.close();
-		sslSocket->setPrivateKey(key);
-		sslSocket->setLocalCertificate("client-crt.pem");
-		if (!sslSocket->addCaCertificates("ca.pem"))
-		{
-			std::cout << "cant open ca certificate" << std::endl;
-			return;
-		}
-		sslSocket->setPeerVerifyMode(QSslSocket::VerifyNone);
-		//sslSocket->ignoreSslErrors();
-		QObject::connect(sslSocket, SIGNAL(encrypted()), this, SLOT(onEncrypted()), Qt::UniqueConnection);
-		sslSocket->connectToHostEncrypted(_host, port);
-		sslSocket->startClientEncryption();
-	}
-	else
 	{
 		// redirected to the other function
 		QWsSocket::connectToHost(_hostAddress, _hostPort, mode);

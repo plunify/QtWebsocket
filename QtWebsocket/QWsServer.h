@@ -22,10 +22,6 @@ along with QtWebsocket.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QTcpServer>
 #include <QTcpSocket>
-#include <QSsl>
-#include <QSslSocket>
-#include <QSslCertificate>
-#include <QSslKey>
 #include <QNetworkProxy>
 #include <QString>
 #include <QStringList>
@@ -34,7 +30,6 @@ along with QtWebsocket.  If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 
 #include "QWsSocket.h"
-#include "QTlsServer.h"
 
 #include <iostream>
 
@@ -87,7 +82,6 @@ protected:
 private slots:
 	// private slots
 	void newTcpConnection();
-	void newTlsConnection(QSslSocket* serverSocket);
 	void closeTcpConnection();
 	void dataReceived();
 	void tcpSocketDisconnected();
@@ -95,13 +89,10 @@ private slots:
 private:
 	// private attributes
 	QTcpServer* tcpServer;
-	QTlsServer tlsServer;
 	QQueue<QWsSocket*> pendingConnections;
 	QHash<const QTcpSocket*, QWsHandshake*> handshakeBuffer;
 
 	bool useSsl;
-	QSslKey sslKey;
-	QSslCertificate sslCertificate;
 
 public:
 	// public static functions

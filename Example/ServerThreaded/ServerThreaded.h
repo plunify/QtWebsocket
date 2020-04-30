@@ -37,12 +37,18 @@ public:
 
 public slots:
 	void processNewConnection();
+    void broadcastHello();
+    void addPeer(QString name);
+    void removePeer(QString name);
+
 
 signals:
-	void broadcastMessage(QString message);
+    void broadcastMessage(QString message);
 
 private:
 	QtWebsocket::QWsServer* server;
+    QTimer* timer;
+    QStringList peers;
 };
 
 #endif // SERVERTHREADED_H

@@ -22,9 +22,6 @@ along with QtWebsocket.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QRegExp>
 #include <QTcpSocket>
-#include <QSslSocket>
-#include <QSsl>
-#include <QSslKey>
 #include <QHostAddress>
 #include <QTime>
 #include <QStringList>
@@ -87,7 +84,6 @@ signals:
 	void frameReceived(QByteArray frame);
 	void pong(quint64 elapsedTime);
 	void encrypted();
-	void sslErrors(const QList<QSslError>& errors);
 
 protected:
 	qint64 writeFrames (const QList<QByteArray>& framesList);

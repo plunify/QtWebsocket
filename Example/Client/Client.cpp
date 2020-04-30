@@ -68,15 +68,6 @@ void Client::displayMessage(QString message)
 	ui->chatTextEdit->append(message);
 }
 
-void Client::displaySslErrors(const QList<QSslError>& errors)
-{
-	for (int i=0, sz=errors.size(); i<sz; i++)
-	{
-		QString errorString = errors.at(i).errorString();
-		displayMessage(errorString);
-	}
-}
-
 void Client::connectSocket()
 {
 	bool ok;

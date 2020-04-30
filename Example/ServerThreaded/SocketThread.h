@@ -44,6 +44,7 @@ private slots:
 
 signals:
 	void messageReceived(QString frame);
+    void disconnected(QString name);
 
 private:
 	
