@@ -24,6 +24,12 @@ along with QtWebsocket.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "WsEnums.h"
 
+#if defined(QWS_LIBRARY)
+#  define QWS_EXPORT Q_DECL_EXPORT
+#else
+#  define QWS_EXPORT Q_DECL_IMPORT
+#endif
+
 namespace QtWebsocket
 {
 
@@ -39,7 +45,7 @@ enum EWebsocketVersion
 	WS_V13 = 13
 };
 
-class QWsHandshake
+class QWS_EXPORT QWsHandshake
 {
 public:
 	QWsHandshake(WsMode wsMode = WsClientMode);

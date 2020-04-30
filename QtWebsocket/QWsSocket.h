@@ -33,10 +33,16 @@ along with QtWebsocket.  If not, see <http://www.gnu.org/licenses/>.
 #include "QWsHandshake.h"
 #include "QWsFrame.h"
 
+#if defined(QWS_LIBRARY)
+#  define QWS_EXPORT Q_DECL_EXPORT
+#else
+#  define QWS_EXPORT Q_DECL_IMPORT
+#endif
+
 namespace QtWebsocket
 {
 
-class QWsSocket : public QAbstractSocket
+class QWS_EXPORT QWsSocket : public QAbstractSocket
 {
 	Q_OBJECT
 

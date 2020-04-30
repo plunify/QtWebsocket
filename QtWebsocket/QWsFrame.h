@@ -24,6 +24,12 @@ along with QtWebsocket.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QByteArray>
 
+#if defined(QWS_LIBRARY)
+#  define QWS_EXPORT Q_DECL_EXPORT
+#else
+#  define QWS_EXPORT Q_DECL_IMPORT
+#endif
+
 namespace QtWebsocket
 {
 	
@@ -32,7 +38,7 @@ namespace QtWebsocket
  *
  * See also [RFC 6455, Section 5](http://tools.ietf.org/html/rfc6455#section-5).
  */
-class QWsFrame
+class QWS_EXPORT QWsFrame
 {
 public:
   QWsFrame();

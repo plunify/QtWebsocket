@@ -10,7 +10,8 @@ QT -= gui
 
 TARGET = QtWebsocket
 TEMPLATE = lib
-CONFIG += staticlib
+CONFIG += shared dll
+DEFINES += QWS_LIBRARY
 
 SOURCES += \
     QWsServer.cpp \

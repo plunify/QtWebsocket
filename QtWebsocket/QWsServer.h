@@ -38,10 +38,16 @@ along with QtWebsocket.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 
+#if defined(QWS_LIBRARY)
+#  define QWS_EXPORT Q_DECL_EXPORT
+#else
+#  define QWS_EXPORT Q_DECL_IMPORT
+#endif
+
 namespace QtWebsocket
 {
 
-class QWsServer : public QObject
+class QWS_EXPORT QWsServer : public QObject
 {
 	Q_OBJECT
 
